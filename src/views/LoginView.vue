@@ -1,10 +1,13 @@
 <template>
   <div class="login">
-    <el-container>
-      <el-aside width="500px" height="1080px">
-        <img src="@/assets/login.png" alt="" class="aside" />
-      </el-aside>
-      <el-main>
+    <div class="left">
+      <img src="@/assets/left_img.png" alt="" class="aside" />
+    </div>
+    <div class="right">
+      <div class="logo">
+        <img style="width:274px;margin-right: 125px;" src="@/assets/logo_login.png" alt="">
+      </div>
+      <div class="card">
         <el-card shadow="hover" class="box-card">
           <template #header>
             <div class="card-header">
@@ -14,7 +17,7 @@
             </div>
           </template>
 
-          <el-form :model="loginForm" label-width="120px" :rules="loginRules" ref="loginFormRef">
+          <el-form :model="loginForm" label-width="60px" :rules="loginRules" ref="loginFormRef">
             <el-form-item label="账号" prop="username">
 
               <el-input auto-complete="false" v-model="loginForm.username" placeholder="请输入账号/手机号/邮箱">
@@ -26,22 +29,35 @@
               </el-input>
             </el-form-item>
             <el-form-item>
-              <el-button id="btn" type="primary" @click="sub_btn" style="margin-right: 50px;">登录
-              </el-button>
-              <router-link to="home">
-                <el-button type="info">返回首页</el-button>
-              </router-link>
+              <div class="loginbutton">
+                <div class="loginbutton1">
+                  <el-button id="btn" type="primary" @click="sub_btn" >登录
+                  </el-button>
+                </div>
+                <div class="loginbutton1">
+                  <router-link to="home">
+                    <el-button type="info">返回首页</el-button>
+                  </router-link>
+                </div>
+              </div>
+
             </el-form-item>
           </el-form>
-
-          <template #footer>
-            <div class="card-footer">
-              <span>Copyright @ 2018 佛山市南海区广工大数控装备协同创新研究院AI云平台 All rights ressrved.</span>
-            </div>
-          </template>
         </el-card>
-      </el-main>
-    </el-container>
+      </div>
+      <div class="rfooter">
+        <div class="rfooter1">
+          <div class="rfooter2">说明文档</div>
+          <div class="rfooter2">用户协议</div>
+          <div class="rfooter2">隐私政策</div>
+          <div class="rfooter2">关于我们</div>
+        </div>
+        <div class="rfooter1">
+          <div class="rfooter2">Copyright @ 2018 佛山市南海区广工大数控装备协同创新研究院AI云平台 All rights ressrved.</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -104,9 +120,46 @@ export default {
 
 
 <style scoped>
+.login {
+  display: flex;
+  justify-content: space-around;
+  height: auto;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+}
+
 .box-card {
-  width: 600px;
-  height: 350px;
-  margin: 100px;
+  width: auto;
+  height: auto;
+  margin-top: 150px;
+}
+
+.rfooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 25px;
+}
+
+.rfooter1 {
+  display: flex;
+  margin: 25px;
+  justify-content: space-between;
+}
+
+.rfooter2 {
+  font-size: 14px;
+  color: #2c3e50;
+  margin-inline: 25px;
+}
+.loginbutton {
+  display: flex;
+  flex-direction: row;
+}
+.loginbutton1 {
+  margin-inline:50px;
 }
 </style>

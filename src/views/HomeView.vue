@@ -8,6 +8,7 @@
         <div>
           <img style="width:274px" src="@/assets/detection.png" alt="">
         </div>
+        
         <div class="item-title">物体检测</div>
         <div class="item-content">
           定制图中每个物体的位置、名称，适合有多个主体、或要识别位置及数量的场景
@@ -54,16 +55,24 @@
         </div>
       </div>
     </div>
-    <div style="background-image:url(@/assets/pbg.jpg);background-size: cover;">
+    <br>
+    <br>
+    <br>
+    <div style="background-color: aliceblue; background-size: cover;">
+      <br>
+      <br>
       <div class="block-title">产品功能</div>
       <div class="gn">
         <div class="gn1">
-          <div class="item-title">数据管理</div>
-          <div class="item-content">使用储存在平台的数据作为数据集，供模型训练调用</div>
+           <div class="item-title">数据管理</div>
+          <div class="item-content">使用储存在平台的数据作为数据集，供模型训练调用</div> 
+
         </div>
         <div class="gn1">
-          <div class="item-title">模型训练</div>
+
+            <div class="item-title">模型训练</div>
           <div class="item-content">简化创建模型、训练模型过程，提供多种GPU硬件资源</div>
+          
         </div>
       </div>
       <div class="gn">
@@ -76,12 +85,16 @@
           <div class="item-content">一键下载满足需求的模型，供各种应用使用</div>
         </div>
       </div>
+      <br>
+      <br>
     </div>
-    <br>
-    <br>
 
-    <div style="background-image: url(assets/process-bg.png);background-size: cover;">
+    <div style="background-color: azure; background-size: cover;">
+      <br>
+      <br>
       <img src="@/assets/process.png" alt="" style="width: 100%;height:100%;">
+      <br>
+      <br>
     </div>
     <br>
     <br>
@@ -173,7 +186,7 @@ export default defineComponent({
 }
 
 .block-title {
-  margin-top: 100px;
+  margin-top: 50px;
   margin-bottom: 50px;
   width: 100%;
   text-align: center;
@@ -223,11 +236,13 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   background-color: white;
-  border-radius: 2.5%;
-  box-shadow: 10px 10px 5px #c8c6c6;
-  border-color: blue;
-  border:20em;
   margin-bottom: 15px;
+  box-shadow: 10px 10px 5px #0a8cef;
+  border:solid 2px rgb(9, 100, 236);
+  border-radius: 10px;
+  padding-inline:30px;
+
+
 }
 
 

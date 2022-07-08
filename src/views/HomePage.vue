@@ -1,9 +1,10 @@
 <template>
-    <el-container>
-        <el-header class="el-header" height=82px style="background-color:rgb(1, 10, 20)">
+    <div class="homepage">
+        <div class="header">
             <Header></Header>
-        </el-header>
-        <el-card shadow="hover">
+        </div>
+        <div>
+            <el-card shadow="hover">
             <el-container>
                 <el-aside width="18%" style="height: 100%;">
                     <el-scrollbar style="height: 100%">
@@ -53,8 +54,12 @@
                 </el-main>
             </el-container>
         </el-card>
+        </div>
+    </div>
+            
+        
 
-    </el-container>
+    
 </template>
 <script lang="ts">
 import Header from '@/components/Header.vue'
@@ -115,5 +120,10 @@ export default {
 .el-card {
     width: 1500px;
     margin: auto;
+}
+
+.homepage {
+    display: flex;
+    flex-direction: column;
 }
 </style>

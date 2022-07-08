@@ -1,8 +1,8 @@
 <template>
   <div class="header">
     <router-link to="/home"><img src="@/assets/logo.png" alt="" style="height:80px;margin-left: 105px;" /></router-link>
-    <div class="loginregister-buttons">
-      <el-button type="primary" plain style="margin-right:35px;">注册</el-button>
+    <div v-if="Ifshow" class="loginregister-buttons">
+      <el-button type="primary" plain style="margin-right:15px;">注册</el-button>
       <router-link to="login">
         <el-button plain>登录</el-button>
       </router-link>
@@ -12,20 +12,20 @@
 
 
 <script lang="ts">
-import { useRouter } from "vue-router";
-
+import { inject } from 'vue'
 
 export default {
   name: "Header",
-
   setup() {
-    const router = useRouter();
-    const uid = router.currentRoute.value.params.uid;
-    console.log(router);
-    return {
-      uid,
-
+    const pageinfo: string = inject('pageinfo') || '';
+    let Ifshow = true;
+    if (pageinfo == 'HomePage') {
+      Ifshow = false;
     }
+    return {
+      Ifshow
+    }
+
   }
 
 };

@@ -8,7 +8,7 @@
         <div>
           <img style="width:274px" src="@/assets/detection.png" alt="">
         </div>
-        
+
         <div class="item-title">物体检测</div>
         <div class="item-content">
           定制图中每个物体的位置、名称，适合有多个主体、或要识别位置及数量的场景
@@ -64,15 +64,15 @@
       <div class="block-title">产品功能</div>
       <div class="gn">
         <div class="gn1">
-           <div class="item-title">数据管理</div>
-          <div class="item-content">使用储存在平台的数据作为数据集，供模型训练调用</div> 
+          <div class="item-title">数据管理</div>
+          <div class="item-content">使用储存在平台的数据作为数据集，供模型训练调用</div>
 
         </div>
         <div class="gn1">
 
-            <div class="item-title">模型训练</div>
+          <div class="item-title">模型训练</div>
           <div class="item-content">简化创建模型、训练模型过程，提供多种GPU硬件资源</div>
-          
+
         </div>
       </div>
       <div class="gn">
@@ -90,14 +90,11 @@
     </div>
 
     <div style="background-color: azure; background-size: cover;">
-      <br>
-      <br>
-      <img src="@/assets/process.png" alt="" style="width: 100%;height:100%;">
-      <br>
-      <br>
+      <div style="display: flex;justify-content: center;">
+        <img src="@/assets/process.png" alt="" style="height: auto;max-width: 1200px;margin: 89px;">
+      </div>
+
     </div>
-    <br>
-    <br>
     <div class="footer">
       <div class="footer1">
         <div class="footer11"><img src="@/assets/logo.png" alt="" style="height:80px;margin-top: 50px;" /></div>
@@ -118,7 +115,7 @@
         <div class="footer15">
           <div class="item-title" style="color: rgb(255, 255, 255);margin-top: 50px;font-size: 16px;">全国服务热线</div>
           <div style="color: rgb(255, 255, 255);font-size: 28px; font-weight: 600;">400-114-2025</div>
-        </div>
+        </div>W
       </div>
       <div class="footer2">
         <div style="margin-top: 30px;color: rgb(255, 255, 255);font-size: 14px;">技术支持：佛山市广工大创新协同研究院</div>
@@ -132,7 +129,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, provide } from "vue";
 import { ElMessage, ElMessageBox } from 'element-plus'
 import Header from '@/components/Header.vue'
 
@@ -140,6 +137,13 @@ export default defineComponent({
   name: "HomeView",
   components: {
     Header
+  },
+  setup() {
+    const pageinfo: string = 'HomeView';
+    provide('pageinfo', pageinfo);
+    return {
+      pageinfo
+    }
   },
   methods: {
     tzlogin() {
@@ -168,11 +172,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.banner-img {
-  width: 100%;
-
-}
-
 .aimodel {
   display: flex;
   justify-content: space-evenly;
@@ -196,13 +195,13 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .item-title {
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 600;
-  margin-top: 22px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .item-content {
@@ -238,11 +237,15 @@ export default defineComponent({
   background-color: white;
   margin-bottom: 15px;
   box-shadow: 10px 10px 5px #0a8cef;
-  border:solid 2px rgb(9, 100, 236);
+  border: solid 2px rgb(9, 100, 236);
   border-radius: 10px;
-  padding-inline:30px;
+  padding: 20px;
 
+}
 
+.gn1:hover {
+  box-shadow: 20px 20px 10px #0a8cef;
+  transition: 1s;
 }
 
 

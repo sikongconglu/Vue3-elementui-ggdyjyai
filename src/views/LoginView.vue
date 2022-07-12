@@ -17,21 +17,21 @@
             </div>
           </template>
 
-          <el-form :model="loginForm" label-width="60px" :rules="loginRules" ref="loginFormRef">
-            <el-form-item label="账号" prop="username">
+          <el-form :model="loginForm" label-width="60px" :rules="rules" ref="loginFormRef">
+            <el-form-item label="账号" prop="uname">
 
-              <el-input auto-complete="false" v-model="loginForm.username" placeholder="请输入账号/手机号/邮箱">
+              <el-input auto-complete="false" v-model="loginForm.uname" placeholder="请输入账号/手机号/邮箱">
               </el-input>
 
             </el-form-item>
-            <el-form-item label="密码" prop="password">
-              <el-input type="password" auto-complete="false" v-model="loginForm.password" placeholder="请输入密码">
+            <el-form-item label="密码" prop="pwd">
+              <el-input type="password" auto-complete="false" v-model="loginForm.pwd" placeholder="请输入密码">
               </el-input>
             </el-form-item>
             <el-form-item>
               <div class="loginbutton">
                 <div class="loginbutton1">
-                  <el-button id="btn" type="primary" @click="sub_btn" >登录
+                  <el-button id="btn" type="primary" @click="submitForm(loginFormRef)">登录
                   </el-button>
                 </div>
                 <div class="loginbutton1">
@@ -64,52 +64,109 @@
 <script lang="ts">
 import router from "@/router";
 import { ElMessage } from "element-plus";
-import { reactive, ref } from "vue";
+import { reactive, ref, toRefs } from "vue";
 import type { FormInstance } from 'element-plus';
-
+import { LoginData } from "@/type/login";
+import { login } from "@/request/api";
 
 export default {
 
   name: "login",
   setup() {
-    sessionStorage.clear();
-    console.log('session cleared');
-    let loginFormRef = ref<FormInstance>();
-    let loginForm = reactive({
-      username: "",
-      password: "",
-    });
-
-    let checknull = (rule: any, value: any, callback: any) => {
-      if (!value) {
-        return callback('不能为空')
-      }
+    const data = reactive(new LoginData())
+    const loginFormRef = ref<FormInstance>()
+   
+    const rules = {
+      uname: [
+        {
+          required: true,  //是否必须字段
+          message: "请输入用户名",   // 触发的提示信息
+          trigger: "blur"   // 触发时机: 当失去焦点时（光标不显示的时候），触发此提示
+        },
+      ],
+      pwd: [
+        {
+          required: true,  //是否必须字段
+          message: "请输入密码",   // 触发的提示信息
+          trigger: "blur"   // 触发时机: 当失去焦点时（光标不显示的时候），触发此提示
+        },
+      ]
     }
-    let loginRules = reactive({
-      username: [{ validator: checknull, trigger: 'blur' }],
-      password: [{ validator: checknull, trigger: 'blur' }]
-    })
-    let sub_btn = () => {
-      if (!loginForm.username || !loginForm.password) {
-        ElMessage.error("账号或密码不能为空！");
-        return;
-      }
-      if (loginForm.username == "admin" && loginForm.password == "123456") {
-        sessionStorage.setItem("user", loginForm.username);
-        router.push('/homepage');
-      }
-      else {
-        ElMessage.error("账号或密码错误！");
-      }
 
+    const submitForm = (formEl: FormInstance | undefined) => {
+      // 对表单内容进行验证
+      if (!formEl) return
+      formEl.validate((valid) => {
+        if (valid) {
+          //console.log(JSON.stringify({ 'contents': [data.loginForm] }))
+          login(JSON.stringify({ 'contents': [data.loginForm] })).then((res) => {
+            //console.log(result, '返回的数据')
+            //console.log(result.data)
+            console.log(JSON.stringify(res));
+            //console.log(res.config );
+            //console.log(result.data.message);
+            localStorage.setItem("userData", JSON.stringify(res))
+
+            // 将token进行保存
+            //console.log(result,"result对象");
+            //let jsonData =result.data;
+            //console.log(jsonData,"json 对象");
+            //localStorage.setItem("userData", JSON.stringify(jsonData))
+            //localStorage.setItem("token", result.data.token)
+            // 跳转页面
+            router.push('/homepage')
+          })
+        } else {
+          ElMessage.error("提交错误！");
+          console.log('error submit!')
+          return false
+        }
+      })
     }
+
     return {
-      loginForm,
-      sub_btn,
-      checknull,
+      ...toRefs(data),
       loginFormRef,
-      loginRules
+      rules,
+      submitForm,
+
     };
+
+    //sessionStorage.clear();
+    //console.log('session cleared');
+    //   let loginFormRef = ref<FormInstance>();
+    //  let loginForm = reactive({
+    //     uname: "",
+    //     pwd: "",
+    //   });
+
+    // let checknull = (rule: any, value: any, callback: any) => {
+    //   if (!value) {
+    //     return callback('不能为空')
+    //   }
+    // }
+    // let loginRules = reactive({
+    //   uname: [{ validator: checknull, trigger: 'blur' }],
+    //   pwd: [{ validator: checknull, trigger: 'blur' }]
+    // })
+    // let sub_btn = () => {
+    //   if (!loginForm.uname || !loginForm.pwd) {
+    //     ElMessage.error("账号或密码不能为空！");
+    //     return;
+    //   }
+
+
+    // if (loginForm.username == "admin" && loginForm.password == "123456") {
+    //   sessionStorage.setItem("user", loginForm.username);
+    //   router.push('/homepage');
+    // }
+    // else {
+    //   ElMessage.error("账号或密码错误！");
+    // }
+
+
+
+
   },
 
 }
@@ -155,11 +212,13 @@ export default {
   color: #2c3e50;
   margin-inline: 25px;
 }
+
 .loginbutton {
   display: flex;
   flex-direction: row;
 }
+
 .loginbutton1 {
-  margin-inline:50px;
+  margin-inline: 50px;
 }
 </style>

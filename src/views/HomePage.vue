@@ -57,10 +57,6 @@
             </el-card>
         </div>
     </div>
-
-
-
-
 </template>
 <script lang="ts">
 import Header from '@/components/Header.vue'
@@ -79,9 +75,9 @@ export default {
         const pageinfo: string = 'HomePage';
         provide('pageinfo', pageinfo);
 
-        let username = sessionStorage.getItem("user");
-        console.log(username);
-        if (username == "admin") {//已登录                   
+        let token = localStorage.getItem("token");
+        //console.log(username);
+        if (token) {//已登录                   
         }
         else {//未登录，返回登录页面
             ElMessageBox.alert("还未登录，请先登录");

@@ -1,6 +1,8 @@
 <template>
   <div class="header">
-    <router-link to="/home"><img src="@/assets/logo.png" alt="" style="height:80px;margin-left: 105px;" /></router-link>
+    <router-link to="/home">
+      <img src="@/assets/logo.png" alt="" style="height:80px;margin-left: 105px;" />
+    </router-link>
     <div v-if="Ifshow" class="loginregister-buttons">
       <el-button type="primary" plain style="margin-right:15px;">注册</el-button>
       <router-link to="login">
@@ -25,9 +27,7 @@ export default {
     return {
       Ifshow
     }
-
-  }
-
+  },
 };
 </script>
 

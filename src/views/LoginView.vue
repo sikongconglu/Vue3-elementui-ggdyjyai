@@ -16,13 +16,10 @@
               </span>
             </div>
           </template>
-
           <el-form :model="loginForm" label-width="60px" :rules="rules" ref="loginFormRef">
             <el-form-item label="账号" prop="uname">
-
               <el-input auto-complete="false" v-model="loginForm.uname" placeholder="请输入账号/手机号/邮箱">
               </el-input>
-
             </el-form-item>
             <el-form-item label="密码" prop="pwd">
               <el-input type="password" auto-complete="false" v-model="loginForm.pwd" placeholder="请输入密码">
@@ -40,7 +37,6 @@
                   </router-link>
                 </div>
               </div>
-
             </el-form-item>
           </el-form>
         </el-card>
@@ -57,7 +53,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -66,16 +61,14 @@ import router from "@/router";
 import { ElMessage } from "element-plus";
 import { reactive, ref, toRefs } from "vue";
 import type { FormInstance } from 'element-plus';
-import { LoginData } from "@/type/login";
+import { LoginData, ILoginRetData } from "@/type/login";
 import { login } from "@/request/api";
 
 export default {
-
   name: "login",
   setup() {
     const data = reactive(new LoginData())
     const loginFormRef = ref<FormInstance>()
-   
     const rules = {
       uname: [
         {
@@ -92,7 +85,12 @@ export default {
         },
       ]
     }
-
+    let token = localStorage.getItem("token");
+    //console.log(username);
+    if (token) {//已登录                   
+      router.push('/homepage')
+    }
+    //localStorage.clear();
     const submitForm = (formEl: FormInstance | undefined) => {
       // 对表单内容进行验证
       if (!formEl) return
@@ -100,13 +98,27 @@ export default {
         if (valid) {
           //console.log(JSON.stringify({ 'contents': [data.loginForm] }))
           login(JSON.stringify({ 'contents': [data.loginForm] })).then((res) => {
+            let jsonobj: any = JSON.parse(JSON.stringify(res));
+            let iretData: ILoginRetData = <ILoginRetData>jsonobj;
+            if (iretData.message == 'ok') {
+              if (iretData.result.length > 0) {
+                localStorage.setItem("token", iretData.result[0].token)
+                localStorage.setItem("jid", iretData.result[0].jid.toString())
+                localStorage.setItem("customercode", iretData.result[0].customercode.toString())
+                router.push('/homepage')
+              }
+              else {
+                ElMessage.error("数据格式错误！");
+              }
+            }
+            else {
+              ElMessage.error("登录错误：" + iretData.message + "!");
+            }
             //console.log(result, '返回的数据')
             //console.log(result.data)
-            console.log(JSON.stringify(res));
+            //console.log(JSON.stringify(res));
             //console.log(res.config );
             //console.log(result.data.message);
-            localStorage.setItem("userData", JSON.stringify(res))
-
             // 将token进行保存
             //console.log(result,"result对象");
             //let jsonData =result.data;
@@ -114,7 +126,6 @@ export default {
             //localStorage.setItem("userData", JSON.stringify(jsonData))
             //localStorage.setItem("token", result.data.token)
             // 跳转页面
-            router.push('/homepage')
           })
         } else {
           ElMessage.error("提交错误！");
@@ -123,15 +134,12 @@ export default {
         }
       })
     }
-
     return {
       ...toRefs(data),
       loginFormRef,
       rules,
       submitForm,
-
     };
-
     //sessionStorage.clear();
     //console.log('session cleared');
     //   let loginFormRef = ref<FormInstance>();
@@ -139,7 +147,6 @@ export default {
     //     uname: "",
     //     pwd: "",
     //   });
-
     // let checknull = (rule: any, value: any, callback: any) => {
     //   if (!value) {
     //     return callback('不能为空')
@@ -154,8 +161,6 @@ export default {
     //     ElMessage.error("账号或密码不能为空！");
     //     return;
     //   }
-
-
     // if (loginForm.username == "admin" && loginForm.password == "123456") {
     //   sessionStorage.setItem("user", loginForm.username);
     //   router.push('/homepage');
@@ -163,19 +168,9 @@ export default {
     // else {
     //   ElMessage.error("账号或密码错误！");
     // }
-
-
-
-
   },
-
 }
-
-
 </script> 
-
-
-
 <style scoped>
 .login {
   display: flex;

@@ -8,7 +8,6 @@
         <div>
           <img style="width:274px" src="@/assets/detection.png" alt="">
         </div>
-
         <div class="item-title">物体检测</div>
         <div class="item-content">
           定制图中每个物体的位置、名称，适合有多个主体、或要识别位置及数量的场景
@@ -66,13 +65,10 @@
         <div class="gn1">
           <div class="item-title">数据管理</div>
           <div class="item-content">使用储存在平台的数据作为数据集，供模型训练调用</div>
-
         </div>
         <div class="gn1">
-
           <div class="item-title">模型训练</div>
           <div class="item-content">简化创建模型、训练模型过程，提供多种GPU硬件资源</div>
-
         </div>
       </div>
       <div class="gn">
@@ -88,12 +84,10 @@
       <br>
       <br>
     </div>
-
     <div style="background-color: azure; background-size: cover;">
       <div style="display: flex;justify-content: center;">
         <img src="@/assets/process.png" alt="" style="height: auto;max-width: 1200px;margin: 89px;">
       </div>
-
     </div>
     <div class="footer">
       <div class="footer1">
@@ -124,15 +118,12 @@
         <div style="margin-top: 30px;color: rgb(255, 255, 255);font-size: 14px;">粤ICP备14013016号-3</div>
       </div>
     </div>
-
   </div>
 </template>
-
 <script lang="ts">
 import { defineComponent, provide } from "vue";
 import { ElMessage, ElMessageBox } from 'element-plus'
 import Header from '@/components/Header.vue'
-
 export default defineComponent({
   name: "HomeView",
   components: {
@@ -168,22 +159,18 @@ export default defineComponent({
     }
   }
 });
-
 </script>
-
 <style scoped>
 .aimodel {
   display: flex;
   justify-content: space-evenly;
 }
-
 .aimodel1 {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
 }
-
 .block-title {
   margin-top: 50px;
   margin-bottom: 50px;
@@ -197,13 +184,11 @@ export default defineComponent({
   align-items: center;
 
 }
-
 .item-title {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 16px;
 }
-
 .item-content {
   font-size: 16px;
   color: #616365;
@@ -211,26 +196,22 @@ export default defineComponent({
   float: left;
   line-height: 28px;
 }
-
 .item-label {
   margin-top: 24px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
-
 .use-button {
   width: 100%;
   text-align: center;
   margin-top: 16px;
 }
-
 .gn {
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 20px;
 }
-
 .gn1 {
   display: flex;
   flex-direction: column;
@@ -242,14 +223,10 @@ export default defineComponent({
   padding: 20px;
 
 }
-
 .gn1:hover {
   box-shadow: 20px 20px 10px #0a8cef;
   transition: 1s;
 }
-
-
-
 .footer {
   background-image: url(@/assets/footer.png);
   background-size: cover;
@@ -257,12 +234,10 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
 }
-
 .footer1 {
   display: flex;
   justify-content: space-evenly;
 }
-
 .footer2 {
   display: flex;
   justify-content: space-evenly;

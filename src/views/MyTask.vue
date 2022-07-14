@@ -14,13 +14,9 @@
             </el-table-column>
         </el-table>
     </el-card>
-
-
 </template>
-
 <script lang="ts">
 import { ref } from 'vue';
-
 export default {
     name: "MyTask",
     setup() {
@@ -41,17 +37,10 @@ export default {
         let deleteRow = (index: number) => {
             tableData.value.splice(index, 1)
         };
-
         return {
             tableData,
             deleteRow,
-            
         };
-
     },
-
 }
-
-
-
 </script>

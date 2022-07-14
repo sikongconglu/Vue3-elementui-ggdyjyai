@@ -13,7 +13,6 @@
                                 <el-sub-menu index="1">
                                     <template #title>
                                         <el-icon>
-
                                         </el-icon>模型中心
                                     </template>
                                     <el-menu-item-group>
@@ -22,7 +21,6 @@
                                         <el-menu-item index="1-3">校验模型</el-menu-item>
                                         <el-menu-item index="1-4">下载模型</el-menu-item>
                                     </el-menu-item-group>
-
                                 </el-sub-menu>
                                 <el-sub-menu index="2">
                                     <template #title>
@@ -32,7 +30,6 @@
                                     <el-menu-item-group>
                                         <el-menu-item index="2-1">数据总览</el-menu-item>
                                     </el-menu-item-group>
-
                                 </el-sub-menu>
                                 <el-sub-menu index="3">
                                     <template #title>
@@ -42,10 +39,7 @@
                                     <el-menu-item-group>
                                         <el-menu-item index="3-1">接入列表</el-menu-item>
                                     </el-menu-item-group>
-
                                 </el-sub-menu>
-
-
                             </el-menu>
                         </el-scrollbar>
                     </el-aside>
@@ -63,10 +57,6 @@ import Header from '@/components/Header.vue'
 import router from '@/router';
 import { ElMessageBox } from 'element-plus';
 import { provide } from "vue";
-
-
-
-
 export default {
     components: {
         Header
@@ -74,55 +64,17 @@ export default {
     setup() {
         const pageinfo: string = 'HomePage';
         provide('pageinfo', pageinfo);
-
         let token = localStorage.getItem("token");
-        //console.log(username);
         if (token) {//已登录                   
         }
         else {//未登录，返回登录页面
             ElMessageBox.alert("还未登录，请先登录");
             router.push("/login");
         }
-
-
     },
-
 }
 </script>
-
 <style scoped>
-.layout-container-demo .el-header {
-    position: relative;
-    background-color: var(--el-color-primary-light-7);
-    color: var(--el-text-color-primary);
-}
-
-.layout-container-demo .el-aside {
-    color: var(--el-text-color-primary);
-    background: var(--el-color-primary-light-8);
-}
-
-.layout-container-demo .el-menu {
-    border-right: none;
-}
-
-.layout-container-demo .el-main {
-    padding: 0;
-}
-
-.layout-container-demo .toolbar {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    right: 20px;
-}
-
-.el-card {
-    width: 1500px;
-    margin: auto;
-}
-
 .homepage {
     display: flex;
     flex-direction: column;

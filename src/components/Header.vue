@@ -14,12 +14,9 @@
     </div>
   </div>
 </template>
-
-
 <script lang="ts">
 import router from '@/router';
 import { inject } from 'vue'
-
 export default {
   name: "Header",
   setup() {
@@ -30,7 +27,7 @@ export default {
       Ifshow1 = false;
       Ifshow2 = true;
     }
-    const logout = () =>{
+    const logout = () => {
       localStorage.removeItem("token");
       router.push("/");
     }
@@ -42,7 +39,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .header {
   background-color: rgb(1, 10, 20);
@@ -51,7 +47,6 @@ export default {
   justify-content: space-between;
 
 }
-
 .loginregister-buttons {
   display: flex;
   justify-content: center;

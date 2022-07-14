@@ -7,7 +7,6 @@ export interface IUserData {
     token: string
     jid: number
 }
-
 export interface ILoginRetData {
     status: number
     message: string

@@ -1,5 +1,4 @@
 import axios from "axios";
-
 //创建axios实例
 const service = axios.create({
     baseURL: "http://120.79.175.196:5001/",
@@ -8,7 +7,6 @@ const service = axios.create({
         "Content-type": "application/json;charset=utf-8"
     }
 })
-
 //请求拦截
 service.interceptors.request.use((config) => {
     config.headers = config.headers || {}
@@ -17,7 +15,6 @@ service.interceptors.request.use((config) => {
     }
     return config
 })
-
 //响应拦截
 service.interceptors.response.use((res) => {
     //console.log(res)
@@ -26,11 +23,9 @@ service.interceptors.response.use((res) => {
     if (code != 200) {
         return Promise.reject(res.data)
     }
-    else
-    { return res.data}
-    
+    else { return res.data }
+
 }, (err) => {
     console.log(err)
 })
-
 export default service

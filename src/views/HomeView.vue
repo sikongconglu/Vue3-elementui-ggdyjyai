@@ -124,6 +124,7 @@
 import { defineComponent, provide } from "vue";
 import { ElMessage, ElMessageBox } from 'element-plus'
 import Header from '@/components/Header.vue'
+import router from "@/router";
 export default defineComponent({
   name: "HomeView",
   components: {
@@ -138,24 +139,31 @@ export default defineComponent({
   },
   methods: {
     tzlogin() {
-      ElMessageBox.confirm(
-        '此功能模块需要登录，是否跳转至登录页面？',
-        '提示',
-        {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning',
-        }
-      )
-        .then(() => {
-          this.$router.push('/login');
-        })
-        .catch(() => {
-          ElMessage({
-            type: 'info',
-            message: '取消成功',
+      let token = localStorage.getItem("token");
+      if (token) {
+        router.push('/homepage')
+      }
+      else {
+        ElMessageBox.confirm(
+          '此功能模块需要登录，是否跳转至登录页面？',
+          '提示',
+          {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+          }
+        )
+          .then(() => {
+            this.$router.push('/login');
           })
-        })
+          .catch(() => {
+            ElMessage({
+              type: 'info',
+              message: '取消成功',
+            })
+          })
+      }
+
     }
   }
 });
@@ -165,12 +173,14 @@ export default defineComponent({
   display: flex;
   justify-content: space-evenly;
 }
+
 .aimodel1 {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
 }
+
 .block-title {
   margin-top: 50px;
   margin-bottom: 50px;
@@ -184,11 +194,13 @@ export default defineComponent({
   align-items: center;
 
 }
+
 .item-title {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 16px;
 }
+
 .item-content {
   font-size: 16px;
   color: #616365;
@@ -196,22 +208,26 @@ export default defineComponent({
   float: left;
   line-height: 28px;
 }
+
 .item-label {
   margin-top: 24px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
+
 .use-button {
   width: 100%;
   text-align: center;
   margin-top: 16px;
 }
+
 .gn {
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 20px;
 }
+
 .gn1 {
   display: flex;
   flex-direction: column;
@@ -223,10 +239,12 @@ export default defineComponent({
   padding: 20px;
 
 }
+
 .gn1:hover {
   box-shadow: 20px 20px 10px #0a8cef;
   transition: 1s;
 }
+
 .footer {
   background-image: url(@/assets/footer.png);
   background-size: cover;
@@ -234,10 +252,12 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
 }
+
 .footer1 {
   display: flex;
   justify-content: space-evenly;
 }
+
 .footer2 {
   display: flex;
   justify-content: space-evenly;

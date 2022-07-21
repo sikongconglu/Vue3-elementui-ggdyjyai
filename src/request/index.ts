@@ -1,3 +1,4 @@
+import router from "@/router";
 import axios from "axios";
 //创建axios实例
 const service = axios.create({
@@ -23,9 +24,12 @@ service.interceptors.response.use((res) => {
     if (code != 200) {
         return Promise.reject(res.data)
     }
-    else { return res.data }
+    else {
+        return res.data 
+    }
 
 }, (err) => {
     console.log(err)
+    router.push('/123456') 
 })
 export default service

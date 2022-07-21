@@ -5,11 +5,10 @@
     </div>
     <div class="main">
         <div class="main1" style="
-        margin-top: 125px;
+        margin-top: 150px;
         margin-bottom: 100px;
         font-size: 100px;
         color:aliceblue;
-
         ">404</div>
         <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         <div class="main1" style="
@@ -36,10 +35,10 @@ export default {
 .main {
     background-color: rgb(1, 10, 20);
     position: fixed;
-    top:0;
+    /*top:0;*/
     left:0;
     right:0;
-    bottom:0;
+    bottom:0; 
     display: flex;
     flex-direction: column;
     align-items: center;

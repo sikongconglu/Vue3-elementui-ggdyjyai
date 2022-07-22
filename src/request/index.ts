@@ -25,11 +25,10 @@ service.interceptors.response.use((res) => {
         return Promise.reject(res.data)
     }
     else {
-        return res.data 
+        return res.data
     }
-
 }, (err) => {
     console.log(err)
-    router.push('/123456') 
+    router.push('/123456')
 })
 export default service
